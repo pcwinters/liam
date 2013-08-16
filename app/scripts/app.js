@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('liamApp', [])
+var app = angular.module
+
+angular.module('liam', [])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -10,4 +12,8 @@ angular.module('liamApp', [])
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .factory('openpgp', function(){
+    openpgp.init();
+    return openpgp;
   });
