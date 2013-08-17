@@ -6,14 +6,14 @@ var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
 
-var stylus = require('stylus');
-var stylusMiddleware = function(dir) {
-  console.log('stylus '+dir+" but "+__dirname+":"+dir)
-  return stylus.middleware({
-        src: __dirname+dir,
-        dest: __dirname+dir
-  });
-};
+// var stylus = require('stylus');
+// var stylusMiddleware = function(dir) {
+//   console.log('stylus '+dir+" but "+__dirname+":"+dir)
+//   return stylus.middleware({
+//         src: __dirname+dir,
+//         dest: __dirname+dir
+//   });
+// };
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -39,11 +39,11 @@ module.exports = function (grunt) {
     yeoman: yeomanConfig,
     watch: {
       coffee: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
+        files: ['<%= yeoman.app %>/scripts/**/*.coffee'],
         tasks: ['coffee:dist']
       },
       coffeeTest: {
-        files: ['test/spec/{,*/}*.coffee'],
+        files: ['test/spec/**/*.coffee'],
         tasks: ['coffee:test']
       },
       livereload: {
@@ -53,7 +53,7 @@ module.exports = function (grunt) {
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
           '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
-          '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+          '{.tmp,<%= yeoman.app %>}/scripts/**/*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -127,7 +127,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/scripts',
-          src: '{,*/}*.coffee',
+          src: '**/*.coffee',
           dest: '.tmp/scripts',
           ext: '.js'
         }]
@@ -136,7 +136,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: 'test/spec',
-          src: '{,*/}*.coffee',
+          src: '**/*.coffee',
           dest: '.tmp/spec',
           ext: '.js'
         }]

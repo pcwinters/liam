@@ -28,7 +28,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-view=""></div>
+    <div ui-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -56,6 +56,8 @@
         <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
         <script src="bower_components/openpgpjs/resources/openpgp.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        
         <!-- endbuild -->
 
         <!-- build:js scripts/modules.js -->
@@ -66,8 +68,8 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/compose.js"></script>
+        <script src="scripts/controllers/mailbox/main.js"></script>
+        <script src="scripts/controllers/mailbox/compose.js"></script>
         <!-- endbuild -->
 
 </body>
