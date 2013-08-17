@@ -4,6 +4,15 @@ angular.module('liam')
   .controller('MailboxCtrl', function ($scope, $state, $stateParams) {
     $scope.$state = $state;
 
+    $scope.folders = [
+        {name:'inbox', unread:2},
+        {name:'sent'},
+        {name:'draft'}
+    ]
+
+    $scope.unread = function(folder){
+        return (folder.unread) ? " ("+folder.unread+")" : ""
+    }
     $scope.isFolder = function(folder){
     	var is = false
     	if(folder == 'compose'){

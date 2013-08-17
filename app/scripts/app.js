@@ -20,12 +20,15 @@ angular.module('liam', ['ui.compat', 'angular-table'])
         })
         .state('mailbox.folder', {
           url: "/:folder",
-          templateUrl: function (stateParams) {
-            return "views/mailbox/"+stateParams.folder+".html"
-          }
+          templateUrl: "views/mailbox/folder.html"          
         })
   })
   .factory('openpgp', function(){
     openpgp.init();
     return openpgp;
+  })
+  .filter('capitalize', function() {
+    return function(input) {
+      return input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    };
   });

@@ -10,9 +10,7 @@
     <div id="sidebar" class="span2 ">
 		<ul class="nav nav-pills nav-stacked">
 			<li ng-class="{'active': isFolder('compose')}"><a href="" ng-click="goFolder('compose')">Compose</a></li>
-      <li ng-class="{'active': isFolder('inbox')}"><a href="" ng-click="goFolder('inbox')">Inbox</a></li>
-			<li><a href="">Sent</a></li>
-			<li><a href="">Draft</a></li>
+      <li ng-repeat="folder in folders" ng-class="{'active': isFolder(folder.name)}"><a href="" ng-click="goFolder(folder.name)">{{ folder.name | capitalize }}{{unread(folder)}}</a></li>
   		</ul>
     </div>
     <div id="main" class="span10 mailbox" ui-view="">

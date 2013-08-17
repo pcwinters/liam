@@ -31,7 +31,7 @@ body {
 	text-overflow: ellipsis;
 }
 
-.mailbox h2 {
+.mailbox .header {
 	margin-top: 0px;
 }
 
@@ -47,4 +47,9 @@ body {
 	margin-left: 10px;
 	width: 150px;
 	vertical-align: top;
+}
+
+.unread {
+	font-weight: bold;
+	border-left: 1px solid blue
 }

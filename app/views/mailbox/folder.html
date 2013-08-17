@@ -1,4 +1,4 @@
-<div ng-controller="InboxCtrl">
+<div ng-controller="FolderCtrl">
 	<table model="messages" class="table table-striped table-condensed table-hover">
 		<thead>
 			<tr>
@@ -7,7 +7,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="message in messages">
+			<tr ng-repeat="message in messages" ng-class="{unread: message.unread}">
 				<td><div>{{message.from}}</div></td>
 				<td><div>{{message.subject}}</div></td>
 			</tr>
