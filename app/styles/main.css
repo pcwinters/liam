@@ -57,3 +57,45 @@ body {
 tr.message {
 	cursor: pointer;
 }
+
+.folders .badge {
+	margin-left: 5px;
+}
+
+.alert.alert-recipients {
+	padding: 2px 5px 2px 5px;
+}
+
+.alert.alert-recipients h5 {
+	display: inline-block;
+	margin: 0px;
+}
+
+.alert-recipients input {
+	margin-right: 3px;
+	vertical-align: top;
+}
+
+.label-no-pgp {
+	border: 1px;
+	border-color: red;
+	border-style: solid;
+}
+
+.recipients-container {
+    overflow: hidden;
+}
+
+.recipients {
+	float: left;
+}
+.recipients-input {
+	display: block;
+    overflow: hidden;
+    padding-left:10px;
+    padding-right:5px;
+}
+.recipients-input input {
+	width: 100%;
+	padding: 0px;
+}

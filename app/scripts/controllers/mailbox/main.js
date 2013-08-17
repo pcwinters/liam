@@ -10,9 +10,6 @@ angular.module('liam')
         {name:'draft'}
     ]
 
-    $scope.unread = function(folder){
-        return (folder.unread) ? " ("+folder.unread+")" : ""
-    }
     $scope.isFolder = function(folder){
     	var is = false
     	if(folder == 'compose'){

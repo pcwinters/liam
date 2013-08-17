@@ -1,10 +1,26 @@
 <div ng-controller="ComposeCtrl">
 	<h4 class="header">New Message</h4>
 	<div class="container-fluid well well-small compose">
-		<div class="row-fluid separate">
+		<div class="row-fluid">
 			<div class="span1">To</div>
-			<div class="span11">
-				<span class="label label-info">Natalie Love Winters (lovewinters.net) <i class="icon-remove"/></span>
+			<div class="span11" class="recipients-container">
+				<div class="recipients">
+					<span class="label label-info"><i class="icon-shield" title="Recipient supports encryption"/> Jane Yes Encrypt (hello.net) <i class="icon-remove"/></span>
+					<span class="label label-info label-no-pgp">John No Encrypt (somebody.net) <i class="icon-remove"/></span>
+				</div>
+				<span class="recipients-input"><input type="text" placeholder="Add recipients"/></span>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span11 offset1">
+				<div class="alert alert-recipients">
+					<h5>Warning!</h5>
+					One or more recipients don't support encrypted messages
+					<div class="pull-right">
+						<input type="checkbox" name="vehicle" value="Bike"/>
+						<span>Password Protect</span>						
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="row-fluid">
