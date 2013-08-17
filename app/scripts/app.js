@@ -2,7 +2,7 @@
 
 var app = angular.module
 
-angular.module('liam', ['ui.compat', 'angular-table'])
+angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize'])
   .config(function ($stateProvider, $urlRouterProvider) {
     
     // For any unmatched url, send to /route1

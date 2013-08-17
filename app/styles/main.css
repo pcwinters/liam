@@ -53,3 +53,7 @@ body {
 	font-weight: bold;
 	border-left: 1px solid blue
 }
+
+tr.message {
+	cursor: pointer;
+}

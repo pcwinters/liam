@@ -1,0 +1,26 @@
+<div ng-controller="ReadMessageCtrl">
+	<div class="container-fluid">
+		<div class="row-fluid separate">
+			<div class="span12" ng-click="noMessage()">Back</div>
+		</div>
+		<div class="row-fluid separate">
+			<div class="span1">From</div>
+			<div class="span11">
+				<span class="label label-info" ng-bind="message.from"/>
+			</div>
+		</div>
+		<div class="row-fluid separate">
+			<div class="span1">To</div>
+			<div class="span11">
+				<span class="label label-info">Me</span>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span1">Subject</div>
+			<div class="span11" ng-bind="message.subject" />
+		</div>
+		<div class="row-fluid">
+			<div class="span12" ng-bind-html-unsafe="message.body" />
+		</div>
+	</div>
+</div>

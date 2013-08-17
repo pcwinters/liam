@@ -13,8 +13,19 @@ class FolderController
 			{from: "Nephi", subject:"architecto beatae vitae dicta sunt explicabo.",age: 29}
 			{from: "Enos", subject:"Vel illum qui dolorem eum fugiat",age: 34}
 		]
-		@$scope.gridOptions =
-			data: 'messages'
+		@$scope.isReadingMessage = @isReadingMessage
+		@$scope.readMessage = @readMessage
+		@$scope.noMessage = @noMessage
+
+	isReadingMessage: () =>
+		return @$scope.read?
+
+	readMessage: (message) =>
+		@$scope.read = message
+
+	noMessage: () =>
+		@$scope.read = null
+
 
 FolderController.$inject = [
 	"$scope"
