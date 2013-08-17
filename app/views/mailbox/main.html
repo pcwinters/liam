@@ -9,13 +9,13 @@
   <div class="row-fluid">
     <div id="sidebar" class="span2 ">
 		<ul class="nav nav-pills nav-stacked">
-			<li ng-class="{'active': isFolder('compose')}"><a ng-click="goFolder('compose')">Compose</a></li>
-      <li ng-class="{'active': isFolder('inbox')}"><a ng-click="goFolder('inbox')">Inbox</a></li>
+			<li ng-class="{'active': isFolder('compose')}"><a href="" ng-click="goFolder('compose')">Compose</a></li>
+      <li ng-class="{'active': isFolder('inbox')}"><a href="" ng-click="goFolder('inbox')">Inbox</a></li>
 			<li><a href="">Sent</a></li>
 			<li><a href="">Draft</a></li>
   		</ul>
     </div>
-    <div id="main" class="span10" ui-view="">
+    <div id="main" class="span10 mailbox" ui-view="">
     </div>
   </div>
 </div>

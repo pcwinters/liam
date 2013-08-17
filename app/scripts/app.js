@@ -2,11 +2,11 @@
 
 var app = angular.module
 
-angular.module('liam', ['ui.compat'])
+angular.module('liam', ['ui.compat', 'angular-table'])
   .config(function ($stateProvider, $urlRouterProvider) {
     
     // For any unmatched url, send to /route1
-    $urlRouterProvider.otherwise("/m/compose") 
+    $urlRouterProvider.otherwise("/m/inbox") 
 
     // Now set up the states
     $stateProvider

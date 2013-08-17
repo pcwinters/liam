@@ -1,1 +1,16 @@
-<h2>Inbox</h2>
+<div ng-controller="InboxCtrl">
+	<table model="messages" class="table table-striped table-condensed table-hover">
+		<thead>
+			<tr>
+				<th class="span3">From</th>
+				<th class="span9">Subject</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="message in messages">
+				<td><div>{{message.from}}</div></td>
+				<td><div>{{message.subject}}</div></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

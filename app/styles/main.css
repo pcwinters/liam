@@ -24,3 +24,27 @@ body {
     margin-bottom: 20px;
     margin-top: 0px;
 }
+
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mailbox h2 {
+	margin-top: 0px;
+}
+
+.editor {
+	display: inline-block;
+	width: -moz-calc(100% - 170px);
+    width: -webkit-calc(100% - 170px);
+    width: calc(100% - 170px);
+}
+
+.editorNav {
+	display: inline-block;
+	margin-left: 10px;
+	width: 150px;
+	vertical-align: top;
+}

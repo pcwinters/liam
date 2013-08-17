@@ -3,6 +3,7 @@ module = angular.module("liam")
 class ComposeController
 	constructor: (@$scope, @$timeout, @openpgp) ->
 		@delay = 2000
+		@bodyNav = 'text'
 		@bindScope()
 
 	
@@ -14,9 +15,18 @@ class ComposeController
 		@$scope.queueEncrypt = @queueEncrypt
 		@$scope.encrypt = @encrypt
 		@$scope.isQueuedForEncryption = @isQueuedForEncryption
+		@$scope.isEditor = @isEditor
+		@$scope.navigateEditor = @navigateEditor
 
 		@$scope.$watch 'message.body', @queueEncrypt
-		
+		@$scope.bodyNav = @$scope.navigateEditor @bodyNav
+	
+
+	isEditor: (name) =>
+		return @$scope.bodyNav == name
+
+	navigateEditor: (name) =>
+		return @$scope.bodyNav = name
 
 	isQueuedForEncryption: () =>
 		promise = @$scope.encryptPromise
