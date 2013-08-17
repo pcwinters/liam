@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="MailboxCtrl">
   <div class="row-fluid">
   	<div class="span12">
   		<div class="page-header">
@@ -9,9 +9,10 @@
   <div class="row-fluid">
     <div id="sidebar" class="span2 ">
 		<ul class="nav nav-pills nav-stacked">
-			<li class="active"><a href="#">Inbox</a></li>
-			<li><a href="#">Sent</a></li>
-			<li><a href="#">Draft</a></li>
+			<li ng-class="{'active': isFolder('compose')}"><a ng-click="goFolder('compose')">Compose</a></li>
+      <li ng-class="{'active': isFolder('inbox')}"><a ng-click="goFolder('inbox')">Inbox</a></li>
+			<li><a href="">Sent</a></li>
+			<li><a href="">Draft</a></li>
   		</ul>
     </div>
     <div id="main" class="span10" ui-view="">
