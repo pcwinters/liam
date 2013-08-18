@@ -23,7 +23,7 @@ var mountFolder = function (connect, dir) {
 
 module.exports = function (grunt) {
   // load all grunt tasks
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  require('matchdep').filter('grunt-*').forEach(grunt.loadNpmTasks);
 
   // configurable paths
   var yeomanConfig = {
@@ -317,6 +317,13 @@ module.exports = function (grunt) {
       'watch'
     ]);
   });
+
+  grunt.registerTask('heroku', [
+      'clean:server',
+      'concurrent:server',
+      'connect:livereload',
+      'watch'
+  ]);
 
   grunt.registerTask('test', [
     'clean:server',
