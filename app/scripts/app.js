@@ -13,7 +13,10 @@ angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize', 'ngCookies']
     $stateProvider
       .state('login', {
         url: "/a/login",
-        templateUrl: "views/account/login.html"
+        templateUrl: "views/account/login.html",
+        access: {
+          public: true
+        }      
       })
       .state('mailbox', {
         url: "/m",
@@ -106,12 +109,14 @@ angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize', 'ngCookies']
     };
     $rootScope.$watch('isLoggedIn()', function(isLoggedIn){
       if(!isLoggedIn){
-        $timeout(function(){$state.transitionTo('login', {}, { location: true, inherit: true })});
-        //$state.transitionTo('login');
+        $state.transitionTo('login');
       }
     });
     $rootScope.$on('$stateChangeStart', function(event, toState){
-      
-      // $state.transitionTo('login');
+      var access = toState.access || {}
+      if(!$auth.isLoggedIn() && !access.public) {
+        event.preventDefault();
+        $state.transitionTo('login');
+      }
     });
   });
