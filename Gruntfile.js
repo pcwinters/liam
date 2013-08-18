@@ -64,6 +64,19 @@ module.exports = function (grunt) {
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost'
       },
+      heroku: {
+        options: {
+          port: process.env.PORT,
+          hostname: '0.0.0.0',
+          middleware: function (connect) {
+            return [
+              lrSnippet,
+              mountFolder(connect, '.tmp'),
+              mountFolder(connect, yeomanConfig.app)
+            ];
+          }
+        }
+      },
       livereload: {
         options: {
           middleware: function (connect) {
@@ -321,7 +334,7 @@ module.exports = function (grunt) {
   grunt.registerTask('heroku', [
       'clean:server',
       'concurrent:server',
-      'connect:livereload',
+      'connect:heroku',
       'watch'
   ]);
 
