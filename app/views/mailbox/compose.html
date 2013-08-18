@@ -1,67 +1,69 @@
 <div ng-controller="ComposeCtrl">
-<form>
-  <fieldset>    
-	<legend>New Message</legend>
-	<div class="container-fluid well well-small compose">
-		<div class="row-fluid">
-			<label>To</label>
-			<div class="recipients-container">
-				<div class="recipients">
-					<span ng-repeat="recipient in recipients" class="label label-info recipient" ng-class="{'label-no-pgp':!recipient.pubkey}"><i ng-show="recipient.pubkey" class="icon-shield" title="Recipient supports encryption"/>{{recipient.name}} ({{recipient.domain}})<i ng-click="removeRecipient(recipient)" class="icon-remove"/></span>
-				</div>
-				<span class="recipients-input"><input type="text" class="clear" placeholder="Add recipients"/></span>
-			</div>
-			<div ng-hide="areAllRecipientsPgpEnabled()" class="alert alert-recipients">
-				<h5>Warning!</h5>
-				One or more recipients don't support encrypted messages
-				<div class="pull-right">
-					<input type="checkbox" ng-model="message.passwordProtected"/>
-					<span>Password Protect</span>						
-				</div>
-			</div>
-		</div>
-		<div class="row-fluid" ng-show="message.passwordProtected">
-			<label>Password</label>
-			<div class="row-fluid">
-				<div class="span6">
-					<input required class="span12" type="password" placeholder="Enter a Password" ng-model="message.password">
-				</div>
-				<div class="span6">
-					<input required class="span12" type="password" placeholder="Repeat the Password" ng-model="message.passwordVerify">
-				</div>
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span1">Subject</div>
-			<div class="span11">
-				<input class="span12" type="text" placeholder="Enter a Subject" ng-model="message.subject">
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span12">
-				<div class="editor">
-					<div ng-show="isEditor('text')">
-						<textarea ng-model="message.body" class="span12" rows="10"></textarea>
+	<form action="">
+		<fieldset>    
+			<legend>New Message</legend>
+			<div class="container-fluid well well-small compose">
+				<div class="row-fluid">
+					<label>To</label>
+					<div class="recipients-container">
+						<div class="recipients">
+							<span ng-repeat="recipient in recipients" class="label label-info recipient" ng-class="{'label-no-pgp':!recipient.pubkey}"><i ng-show="recipient.pubkey" class="icon-shield" title="Recipient supports encryption"></i><span>{{recipient.name}} ({{recipient.domain}})</span><i ng-click="removeRecipient(recipient)" class="icon-remove"></i></span>
+						</div>
+						<span class="recipients-input"><input type="text" class="clear" placeholder="Add recipients"/></span>
 					</div>
-					<div ng-show="isEditor('pgp')">
-						<textarea disabled ng-model="message.encrypted" class="span12" rows="10"></textarea>
+					<div ng-hide="areAllRecipientsPgpEnabled()" class="alert alert-recipients">
+						<h5>Warning!</h5>
+						<span>One or more recipients don't support encrypted messages</span>
+						<div class="pull-right">
+							<input type="checkbox" ng-model="message.passwordProtected"/>
+							<span>Password Protect</span>						
+						</div>
 					</div>
 				</div>
-				<div class="editorNav">
-					<ul class="nav nav-list">
-						<li ng-class="{active: isEditor('text')}"><a href="" ng-click="navigateEditor('text')">Edit</a></li>
-						<li class="nav-header">Examine</li>
-						<li ng-class="{active: isEditor('pgp')}"><a href="" ng-click="navigateEditor('pgp')">PGP Encrypted <i ng-show="isQueuedForEncryption()" class="icon-refresh"/></a></li>
-					</ul>
+				<div class="row-fluid" ng-show="message.passwordProtected">
+					<label>Password</label>
+					<div class="row-fluid">
+						<div class="span6">
+							<input required class="span12" type="password" placeholder="Enter a Password" ng-model="message.password">
+						</div>
+						<div class="span6">
+							<input required class="span12" type="password" placeholder="Repeat the Password" ng-model="message.passwordVerify">
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span1">Subject</div>
+					<div class="span11">
+						<input class="span12" type="text" placeholder="Enter a Subject" ng-model="message.subject">
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="editor">
+							<div ng-show="isEditor('text')">
+								<textarea ng-model="message.body" class="span12" rows="10"></textarea>
+							</div>
+							<div ng-show="isEditor('pgp')">
+								<textarea disabled ng-model="message.encrypted" class="span12" rows="10"></textarea>
+							</div>
+						</div>
+						<div class="editorNav">
+							<ul class="nav nav-list">
+								<li ng-class="{active: isEditor('text')}"><a href="" ng-click="navigateEditor('text')">Edit</a></li>
+								<li class="nav-header">Examine</li>
+								<li ng-class="{active: isEditor('pgp')}"><a href="" ng-click="navigateEditor('pgp')">PGP Encrypted <i ng-show="isQueuedForEncryption()" class="icon-refresh"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<span class="btn btn-primary">Send</span>
+						<span class="btn">Draft</span>
+						<span class="btn pull-right"><i class="icon-trash"></i></span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span12">
-				<span class="btn btn-primary">Send</span>
-				<span class="btn">Draft</span>
-				<span class="btn pull-right"><i class="icon-trash"/></span>
-			</div>
-		</div>
-	</div>
+		</fieldset>
+	</form>
 </div>
