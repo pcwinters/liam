@@ -36,7 +36,9 @@ class ComposeController
 		@$scope.removeRecipient = @removeRecipient
 		@$scope.areAllRecipientsPgpEnabled = @areAllRecipientsPgpEnabled
 
-		@$scope.$watch 'message.body', @queueEncrypt
+		@$scope.$watch 'message.body', @$scope.queueEncrypt
+		@$scope.$watch 'areAllRecipientsPgpEnabled()', (areAllRecipientsPgpEnabled) =>
+			if areAllRecipientsPgpEnabled then @$scope.message.passwordProtected = false
 		@$scope.bodyNav = @$scope.navigateEditor @bodyNav
 	
 	removeRecipient: (recipient) =>
@@ -57,7 +59,7 @@ class ComposeController
 		return promise
 
 	queueEncrypt: () =>
-		if @$scope.encryptPromise? then @$scope.encryptPromise.cancel()
+		if @$scope.encryptPromise? then @$timeout.cancel @$scope.encryptPromise
 		@$scope.encryptPromise = @$timeout @encrypt, @delay
 		@$scope.encryptPromise.then () =>
 			@$scope.encryptPromise = null

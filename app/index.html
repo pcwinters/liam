@@ -30,7 +30,19 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ui-view=""></div>
+    <div class="container-fluid">
+      <div id="header" class="row-fluid">
+        <div class="span12">
+            <div class="page-header">
+                <h1>Liam <small>We're not watching</small></h1>
+            </div>
+            <span class="account pull-right" ng-bind="userDisplayName()"/>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span12" ui-view="" />
+      </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -75,6 +87,7 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/account/login.js"></script>
         <script src="scripts/controllers/mailbox/main.js"></script>
         <script src="scripts/controllers/mailbox/compose.js"></script>
         <script src="scripts/controllers/mailbox/folder.js"></script>

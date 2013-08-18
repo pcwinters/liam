@@ -141,3 +141,9 @@ input.clear, input.clear:focus {
 	       -o-transition: all 0 ease 0;
 	          transition: all 0 ease 0;
 }
+
+#header .account {
+	position: absolute;
+	top: 40px;
+	right: 20px;
+}
