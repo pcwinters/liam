@@ -63,8 +63,12 @@ angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize', 'ngCookies']
           callback(null, currentUser);
       },
       google: {
-        clientId: '1066133385516.apps.googleusercontent.com',
-        scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email']
+        clientId: '1066133385516-fknpq8be830as60j87etq5vdujk0gv00.apps.googleusercontent.com',
+        scope: [
+          'https://www.googleapis.com/auth/userinfo.profile', 
+          'https://www.googleapis.com/auth/userinfo.email',
+          'https://mail.google.com/'
+          ]
       },
       googleAuth: function(callback){
         // var url = 'https://accounts.google.com/o/oauth2/auth?'+
@@ -77,6 +81,9 @@ angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize', 'ngCookies']
 
         gapi.auth.authorize({
           client_id: this.google.clientId,
+          response_type: 'token',
+          access_type: 'online',
+          approval_prompt: 'force',
           scope: this.google.scope,
           immediate: false,
           authuser: -1

@@ -1,7 +1,7 @@
 module = angular.module("liam")
 
 class LoginController
-	constructor: (@$scope, @$location, @$state, @$auth) ->
+	constructor: (@$scope, @$location, @$state, @$auth, @$http) ->
 		@bindScope()
 	
 	bindScope: ->
@@ -23,17 +23,14 @@ class LoginController
 
 	handleGoogleAuth: (authResult) =>
 		debugger
-		console.log authResult
-		gapi.auth.setToken(authResult)
-		gapi.client.load 'oauth2', 'v2', () =>
-			request = gapi.client.oauth2.userinfo.get().execute (user) =>
-				theUser = {
-					lastName: user.family_name
-					firstName: user.given_name
-					username: user.email
-				}
-				@$auth.login theUser, () =>
-					@$state.transitionTo 'mailbox'
+		@$http.post('/api/auth/google/callback', authResult).success (user) =>
+			theUser = {
+				lastName: user.family_name
+				firstName: user.given_name
+				username: user.email
+			}	
+			@$auth.login theUser, () =>
+				@$state.transitionTo 'mailbox'
 
 	googleAuth: () =>
 		@$auth.googleAuth(@$scope.handleGoogleAuth)
@@ -44,7 +41,8 @@ LoginController.$inject = [
 	"$scope"
 	"$location"
 	"$state"
-	"$auth"
+	"$auth",
+	"$http"
 	]
 
 angular.module('liam').controller "LoginCtrl", LoginController
