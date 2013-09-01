@@ -22,7 +22,6 @@ class LoginController
 			@$state.transitionTo 'mailbox'
 
 	handleGoogleAuth: (authResult) =>
-		debugger
 		@$http.post('/api/auth/google/callback', authResult).success (user) =>
 			theUser = {
 				lastName: user.family_name

@@ -1,24 +1,32 @@
 module = angular.module("liam")
 
 class FolderController
-	constructor: (@$scope) ->
+	constructor: (@$scope, @$stateParams, @$http) ->
 		@bindScope()
 
 	
-	bindScope: ->
-		@$scope.messages = [
-			{from: "Moroni De Vinci A La Spaghetti With Meatballs", subject:"architecto beatae vitae dicta sunt explicabo.", age: 50, unread:true}
-			{from: "Tiancum", subject:"labore et dolore magnam aliquam quaerat voluptatem",age: 43}
-			{from: "Jacob", subject:"Lorem ipsum dolor sit amet, consectetur adipisicing elit",age: 27, unread:true}
-			{from: "Nephi", subject:"architecto beatae vitae dicta sunt explicabo.",age: 29}
-			{from: "Enos", subject:"Vel illum qui dolorem eum fugiat",age: 34}
-		]
+	bindScope: =>
+		@$scope.messages = []
+		@$scope.folder = @$stateParams.folder
+		@$http.get("/api/mailbox/#{@$scope.folder}").success (messages) =>
+			@$scope.messages = messages
+
 		@$scope.isReadingMessage = @isReadingMessage
 		@$scope.readMessage = @readMessage
 		@$scope.noMessage = @noMessage
+		@$scope.isUnread = @isUnread
+		@$scope.addressName = @addressName
+
+	addressName: (address) =>
+		r = /(.*) \<(.*)\>/
+		match = r.exec address
+		return match[1]
 
 	isReadingMessage: () =>
 		return @$scope.read?
+
+	isUnread: (message) =>
+		return not _.contains message.attributes.flags, '\\Seen'
 
 	readMessage: (message) =>
 		@$scope.read = message
@@ -28,7 +36,9 @@ class FolderController
 
 
 FolderController.$inject = [
-	"$scope"
+	"$scope",
+	"$stateParams",
+	"$http"
 	]
 
 angular.module('liam').controller "FolderCtrl", FolderController

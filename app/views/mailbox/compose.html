@@ -7,7 +7,7 @@
 					<label>To</label>
 					<div class="recipients-container">
 						<div class="recipients">
-							<span ng-repeat="recipient in recipients" class="label label-info recipient" ng-class="{'label-no-pgp':!recipient.pubkey}"><i ng-show="recipient.pubkey" class="icon-shield" title="Recipient supports encryption"></i><span>{{recipient.name}} ({{recipient.domain}})</span><i ng-click="removeRecipient(recipient)" class="icon-remove"></i></span>
+							<span ng-repeat="recipient in recipients" class="label label-info address" ng-class="{'label-no-pgp':!recipient.pubkey}"><i ng-show="recipient.pubkey" class="icon-shield" title="Recipient supports encryption"></i><span>{{recipient.name}} ({{recipient.domain}})</span><i ng-click="removeRecipient(recipient)" class="icon-remove"></i></span>
 						</div>
 						<span class="recipients-input"><input type="text" class="clear" placeholder="Add recipients"/></span>
 					</div>

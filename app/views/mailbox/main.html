@@ -3,7 +3,7 @@
     <div id="sidebar" class="span2 ">
 		<ul class="nav nav-pills nav-stacked folders">
 			<li ng-class="{'active': isFolder('compose')}"><a href="" ng-click="goFolder('compose')">Compose</a></li>
-      <li ng-repeat="folder in folders" ng-class="{'active': isFolder(folder.name)}"><a href="" ng-click="goFolder(folder.name)">{{ folder.name | capitalize }}<span class="badge">{{folder.unread}}</span></a></li>
+      <li ng-repeat="folder in folders" ng-class="{'active': isFolder(folder.name)}"><a href="" ng-click="goFolder(folder.name)">{{ folder.name | capitalize }}<span class="badge">{{unread(folder)}}</span></a></li>
   		</ul>
     </div>
     <div id="main" class="span10 mailbox" ui-view="">

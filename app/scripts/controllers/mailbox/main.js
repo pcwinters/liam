@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('liam')
-  .controller('MailboxCtrl', function ($scope, $state, $stateParams) {
+  .controller('MailboxCtrl', function ($scope, $state, $stateParams, $http) {
     $scope.$state = $state;
 
-    $scope.folders = [
-        {name:'inbox', unread:2},
-        {name:'sent'},
-        {name:'draft'}
-    ]
+    $scope.folders = []
+    $http.get('/api/mailbox').success(function(folders) {
+        $scope.folders = folders
+    });
 
     $scope.isFolder = function(folder){
     	var is = false
@@ -19,11 +18,16 @@ angular.module('liam')
     	}
     	return is;
     };
+    $scope.unread = function(folder) {
+        if(folder.status.messages.unseen)
+            return folder.status.messages.unseen
+    };
+
     $scope.goFolder = function(folder){
     	if(folder=='compose'){
     		$state.transitionTo('mailbox.compose', {}, { location: true, inherit: true, relative: $state.$current });
     	} else {
-			$state.transitionTo('mailbox.folder', {folder: 'inbox'}, { location: true, inherit: true, relative: $state.$current })
+			$state.transitionTo('mailbox.folder', {folder: folder}, { location: true, inherit: true, relative: $state.$current })
 		}
     };
     $scope.state = function(s){

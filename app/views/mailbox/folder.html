@@ -8,9 +8,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="message" ng-repeat="message in messages" ng-class="{unread: message.unread}" ng-click="readMessage(message)">
-					<td><div>{{message.from}}</div></td>
-					<td><div>{{message.subject}}</div></td>
+				<tr class="message" ng-repeat="message in messages" ng-class="{unread: isUnread(message)}" ng-click="readMessage(message)">
+					<td>
+						<div>
+							<span ng-repeat="from in message.headers.from">
+								<span>{{addressName(from)}}{{$last && '' || ', ' }}</span>
+							</span>
+						</div>
+					</td>
+					<td><div>{{message.headers.subject[0]}}</div></td>
 				</tr>
 			</tbody>
 		</table>
