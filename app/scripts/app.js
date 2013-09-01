@@ -28,6 +28,22 @@ angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize', 'ngCookies']
 
       //     return accessLevel.bitMask & role.bitMask;
       // },
+      verifyIdentity: function(callback) {
+        $http.get("/api/auth/identity").success(function(user){
+          if(!!user) {
+            var theUser = {
+              lastName: user.family_name,
+              firstName: user.given_name,
+              username: user.email
+            } 
+            changeUser(theUser);
+            callback(null, theUser);
+          } else {
+            callback()
+          }
+
+        });
+      },
       isLoggedIn: function(user) {
           if(user === undefined)
               user = currentUser;
@@ -83,10 +99,10 @@ angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize', 'ngCookies']
           client_id: this.google.clientId,
           response_type: 'token',
           access_type: 'online',
-          approval_prompt: 'force',
+          // approval_prompt: 'force',
           scope: this.google.scope,
           immediate: false,
-          authuser: -1
+          // authuser: -1
         }, callback)
       }
     }
@@ -95,10 +111,6 @@ angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize', 'ngCookies']
     
     // For any unmatched url, send to /route1
     $urlRouterProvider.when('/m', '/m/inbox');
-    $urlRouterProvider.when('access_token', ['$location', function($location){
-      debugger
-
-    }]);
     $urlRouterProvider.otherwise("/m/inbox");
     
     // Now set up the states
@@ -148,16 +160,17 @@ angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize', 'ngCookies']
         return user.firstName;
       }
     };
-    $rootScope.$watch('isLoggedIn()', function(isLoggedIn){
-      if(!isLoggedIn){
-        $state.transitionTo('login');
-      }
-    });
-    $rootScope.$on('$stateChangeStart', function(event, toState){
+    // $rootScope.$watch('isLoggedIn()', function(isLoggedIn){
+    //   if(!isLoggedIn){
+    //     $state.transitionTo('login');
+    //   }
+    // });
+    $rootScope.$on('$stateChangeStart', function(event, toState, params){
       var access = toState.access || {}
       if(!$auth.isLoggedIn() && !access.public) {
         event.preventDefault();
-        $state.transitionTo('login');
+        $rootScope.deferredTransition = {state:toState, stateParams:params};
+        // $state.transitionTo('login');
       }
     });
   });
