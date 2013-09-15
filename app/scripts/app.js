@@ -12,6 +12,11 @@ angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize', 'ngCookies']
       return input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     };
   })
+  .filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse();
+    };
+  })
   .factory('$auth', function($http, $cookieStore, $rootScope){
     var currentUser = {username: null};
     $cookieStore.remove('user');
@@ -83,7 +88,8 @@ angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize', 'ngCookies']
         scope: [
           'https://www.googleapis.com/auth/userinfo.profile', 
           'https://www.googleapis.com/auth/userinfo.email',
-          'https://mail.google.com/'
+          'https://mail.google.com/',
+          'https://www.google.com/m8/feeds'
           ]
       },
       googleAuth: function(callback){
@@ -143,6 +149,10 @@ angular.module('liam', ['ui.compat', 'angular-table', 'ngSanitize', 'ngCookies']
           url: "/:folder",
           templateUrl: "views/mailbox/folder.html"          
         })
+          // .state('mailbox.folder.message', {
+          //   url: "/:uid"
+          //   templateUrl: "views/mailbox"
+          // })
 
   })
   .run(function($rootScope, $state, $timeout, $auth){

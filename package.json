@@ -39,7 +39,8 @@
     "stylus": "~0.36.1",
     "nib": "~1.0.0",
     "grunt-cli": "~0.1.9",
-    "grunt-connect-proxy": "~0.1.5"
+    "grunt-connect-proxy": "~0.1.5",
+    "mongoose": "~3.6.19"
   },
   "engines": {
     "node": ">=0.8.0"

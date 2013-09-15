@@ -5,10 +5,11 @@
 				<tr>
 					<th class="span3">From</th>
 					<th class="span9">Subject</th>
+					<th class="span9">Date</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="message" ng-repeat="message in messages" ng-class="{unread: isUnread(message)}" ng-click="readMessage(message)">
+				<tr class="message" ng-repeat="message in messages | reverse" ng-class="{unread: isUnread(message)}" ng-click="readMessage(message)">
 					<td>
 						<div>
 							<span ng-repeat="from in message.headers.from">
@@ -17,6 +18,7 @@
 						</div>
 					</td>
 					<td><div>{{message.headers.subject[0]}}</div></td>
+					<td><div>{{message.headers.date[0]}}</div></td>
 				</tr>
 			</tbody>
 		</table>
